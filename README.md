@@ -1,86 +1,81 @@
-# Smart Underpass Monitoring & Alert System
+# Smart Underpass Flood Monitoring & Alert System
 
-A full-stack AI-powered monitoring system built to detect waterlogging and road surface damage (e.g. potholes) in underpasses and alert city authorities via a live dashboard and automated SMS notifications. Designed using Jetson Nano as an edge device, this project primarily showcases modern cloud integration, frontend development, computer vision, and real-time communication between embedded hardware and software infrastructure.
-
-## 🧠 Project Focus
-
-Although this system includes a hardware component, its **software architecture** is the central focus. This includes:
-
-- Real-time **frontend dashboard** (React.js + Google Maps API)
-- **Backend integration** with Firebase Realtime Database & Storage
-- **Computer Vision** with YOLOv5 for pothole detection
-- **Cloud-based alerts** via Twilio API
-- Modular, scalable codebase written in **Python and JavaScript**
+A real-time, AI-driven underpass monitoring system designed to enhance urban safety and traffic management. This project features a custom live map for authorities, intelligent route redirection for users, and automated alerts powered by computer vision and sensor fusion. Built with a robust software architecture and edge-AI deployment on Jetson Nano, it serves as a scalable smart-city prototype.
 
 ---
 
-## 🔧 Key Features
+##  Key Features
 
-### 🔹 Real-Time Monitoring Dashboard
+### 📍 Real-Time Live Map with Dynamic Markers
+- Built using **Google Maps API** within a **React.js dashboard**
+- Custom map markers reflect live underpass status: _Safe_, _Warning_, or _Critical_
+- Each marker updates automatically from Firebase in real time
 
-- Developed with **React.js**
-- Uses **Google Maps API** to display underpass status via live map markers
-- Dynamically updates marker colour based on flood severity
-- Displays pothole images and sensor readings in real-time
-- Fully responsive for mobile/desktop environments
+### 🛣️ Smart Alternative Route Suggestions
+- If an underpass is flooded or damaged, the system suggests **alternative navigation routes**
+- Ensures public safety and traffic redirection in urban areas
+- Future-ready for Google Maps Directions API or OpenRoute integration
 
-### 🔹 AI-Powered Pothole Detection
+### 🎯 Admin Monitoring Dashboard
+- Web interface designed for **municipal authorities**
+- Displays:
+  - Real-time water levels from ultrasonic sensors
+  - Latest pothole detection images
+  - Historical sensor and alert logs
+- Responsive design for desktop and mobile
 
-- Camera images captured by Jetson Nano are processed using **YOLOv5n** (lightweight, real-time model)
-- Detected images are sent to Firebase Storage and rendered in the dashboard with timestamps and location metadata
+### 🧠 On-Device Pothole Detection
+- Jetson Nano runs **YOLOv5 Nano model** on camera feed to detect potholes in real time
+- Annotated images uploaded to Firebase Storage and viewable in dashboard
 
-### 🔹 Cloud Integration
+### ⚠️ Automated Alerts via Twilio
+- SMS alerts are triggered automatically if:
+  - Water levels cross danger thresholds
+  - Potholes are detected at critical zones
+- Sends alerts to pre-configured authority contacts via **Twilio API**
 
-- Firebase is used for:
-  - **Realtime Database**: live updates of water level and detection metadata
-  - **Storage**: storing and retrieving pothole detection images
-
-### 🔹 Alert System (Twilio API)
-
-- Automated SMS alerts are sent to registered authorities when:
-  - Water level exceeds a critical threshold
-  - Road damage is detected in sensitive zones
+### 🔄 Real-Time Cloud Integration
+- **Firebase Realtime Database** syncs water level and system status in real time
+- **Firebase Storage** hosts all captured and processed images
+- Ensures seamless data flow between edge device and frontend dashboard
 
 ---
 
-## 💻 Software Architecture
-
-```plaintext
-Jetson Nano
-├── Captures camera frames
-├── Interprets ultrasonic sensor data
-├── Runs YOLOv5 detection on images
-├── Pushes data to Firebase (DB + Storage)
-├── Triggers Twilio SMS alert if needed
-
-React.js Dashboard
-├── Connects to Firebase in real-time
-├── Displays flood level and detection data on a live map
-├── Updates UI immediately with new data and alerts
-```
-## 🧱 Tech Stack
+##  Tech Stack
 
 ### 🖥️ Frontend
-- **React.js** – Building the interactive admin dashboard
-- **Google Maps API** – Real-time geolocation and status visualization
-- **CSS & Bootstrap** – Responsive design and UI styling
+- **React.js** – Interactive admin dashboard
+- **Google Maps API** – Live map with custom status markers & routing
+- **CSS & Bootstrap** – UI/UX styling and responsiveness
 
 ### 🧠 Backend
-- **Firebase Realtime Database** – Cloud-hosted NoSQL DB for real-time sensor data sync
-- **Firebase Storage** – Storing pothole detection images with timestamps
-- **Firebase Authentication (Optional)** – Secure access control for dashboard
+- **Firebase Realtime Database** – Live sensor data & system sync
+- **Firebase Storage** – Image repository for pothole detections
+- **Firebase Auth (Optional)** – Admin access control
 
-### 🎯 Computer Vision & ML
-- **YOLOv5 Nano (PyTorch)** – Lightweight real-time object detection for potholes
-- **OpenCV** – Image processing and handling camera feed
-- **Jetson Nano** – Edge device for on-site processing and inference
+### 🔍 Computer Vision & AI
+- **YOLOv5 Nano (PyTorch)** – Lightweight real-time object detection
+- **OpenCV** – Image preprocessing and camera interfacing
+- **Jetson Nano** – Edge inference and sensor-camera integration
 
-### 📡 Communication & Alerts
-- **Twilio API** – Automated SMS alerts to authorities on threshold breach
-- **Python** – Main scripting language for edge device integration
+### 📡 Communication
+- **Twilio SMS API** – Alert system for emergency communication
+- **Python** – Core scripts for sensor, camera, vision, and cloud communication
 
-### ⚙️ Other Tools & Libraries
-- **Node.js & npm** – Environment for frontend development
-- **Firebase Admin SDK** – Python integration with Firebase
-- **Jetson.GPIO** – Reading ultrasonic sensor data on Jetson Nano
-- **Git & GitHub** – Version control and collaboration
+### ⚙️ Tooling
+- **Node.js, npm** – Frontend build system
+- **Jetson.GPIO** – Sensor interfacing on Jetson
+- **Git & GitHub** – Version control
+
+---
+
+## 📂 Folder Structure
+
+```bash
+├── dashboard/               # React frontend
+├── firebase_config.py       # Firebase setup and credentials
+├── main.py                  # Jetson Nano script (sensors + CV)
+├── twilio_alerts.py         # SMS alert handler
+├── yolov5/                  # YOLOv5 model and weights
+├── sensors/                 # Ultrasonic sensor read scripts
+└── README.md
