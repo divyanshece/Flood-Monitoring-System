@@ -1,3 +1,4 @@
+```md
 # 🌊 FloodSense | Smart Flood Monitoring & Pothole Detection System
 
 A comprehensive IoT + AI-powered system to monitor urban flooding and detect potholes in real-time using ultrasonic sensors, machine learning, and intuitive dashboards.
@@ -86,3 +87,80 @@ The **Flood Monitoring and Pothole Detection System** is a smart solution design
 ---
 
 ## 🧱 Project Structure
+```
+
+flood-monitering-system/
+├── client/
+│ ├── flood-detection-system/
+│ └── pothole-detection-system/
+├── distance/
+│ └── distance.ino
+├── server/
+│ ├── index.js
+│ └── Routes/
+│ └── route.js
+├── POTHOLE DETCTION/
+│ ├── live_test.py
+│ └── pothole_detector.pkl
+
+````
+
+---
+
+## 🛠️ Installation
+
+### 🔹 Flood Detection Client
+```bash
+cd client/flood-detection-system
+npm install
+npm run dev
+````
+
+### 🔹 Pothole Detection Client
+
+```bash
+cd client/pothole-detection-system
+npm install
+npm run dev
+```
+
+### 🔹 Backend Server
+
+```bash
+cd server
+npm install
+node index.js
+```
+
+### 🔹 Distance Sensor (Arduino)
+
+1. Open `distance/distance.ino` in Arduino IDE
+2. Update your:
+   - Wi-Fi SSID and Password
+   - Backend URL
+3. Upload to your NodeMCU/Wemos board
+
+---
+
+## 🧪 Usage
+
+- Frontend will run on `http://localhost:5173`
+- Backend will run on `http://localhost:5000`
+- Sensor data will be posted to backend in real-time
+- Use pothole detection interface to test with images/video
+
+---
+
+## 🔌 API Endpoints
+
+### Flood Monitoring
+
+- `GET /api/location` → Get current flood levels
+- `POST /api/location` → Receive sensor data (from hardware)
+
+### Pothole Detection (example if extended)
+
+- `POST /api/potholes` → Upload image for detection
+- `GET /api/potholes` → Fetch recent detections
+
+---
