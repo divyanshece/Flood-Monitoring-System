@@ -1,81 +1,88 @@
-# Smart Underpass Flood Monitoring & Alert System
+# 🌊 FloodSense | Smart Flood Monitoring & Pothole Detection System
 
-A real-time, AI-driven underpass monitoring system designed to enhance urban safety and traffic management. This project features a custom live map for authorities, intelligent route redirection for users, and automated alerts powered by computer vision and sensor fusion. Built with a robust software architecture and edge-AI deployment on Jetson Nano, it serves as a scalable smart-city prototype.
-
----
-
-##  Key Features
-
-### 📍 Real-Time Live Map with Dynamic Markers
-- Built using **Google Maps API** within a **React.js dashboard**
-- Custom map markers reflect live underpass status: _Safe_, _Warning_, or _Critical_
-- Each marker updates automatically from Firebase in real time
-
-### 🛣️ Smart Alternative Route Suggestions
-- If an underpass is flooded or damaged, the system suggests **alternative navigation routes**
-- Ensures public safety and traffic redirection in urban areas
-- Future-ready for Google Maps Directions API or OpenRoute integration
-
-### 🎯 Admin Monitoring Dashboard
-- Web interface designed for **municipal authorities**
-- Displays:
-  - Real-time water levels from ultrasonic sensors
-  - Latest pothole detection images
-  - Historical sensor and alert logs
-- Responsive design for desktop and mobile
-
-### 🧠 On-Device Pothole Detection
-- Jetson Nano runs **YOLOv5 Nano model** on camera feed to detect potholes in real time
-- Annotated images uploaded to Firebase Storage and viewable in dashboard
-
-### ⚠️ Automated Alerts via Twilio
-- SMS alerts are triggered automatically if:
-  - Water levels cross danger thresholds
-  - Potholes are detected at critical zones
-- Sends alerts to pre-configured authority contacts via **Twilio API**
-
-### 🔄 Real-Time Cloud Integration
-- **Firebase Realtime Database** syncs water level and system status in real time
-- **Firebase Storage** hosts all captured and processed images
-- Ensures seamless data flow between edge device and frontend dashboard
+A comprehensive IoT + AI-powered system to monitor urban flooding and detect potholes in real-time using ultrasonic sensors, machine learning, and intuitive dashboards.
 
 ---
 
-##  Tech Stack
+## 🚀 View Live: [Click here](https://your-deployment-link.com)
 
-### 🖥️ Frontend
-- **React.js** – Interactive admin dashboard
-- **Google Maps API** – Live map with custom status markers & routing
-- **CSS & Bootstrap** – UI/UX styling and responsiveness
+## 📑 Table of Contents
 
-### 🧠 Backend
-- **Firebase Realtime Database** – Live sensor data & system sync
-- **Firebase Storage** – Image repository for pothole detections
-- **Firebase Auth (Optional)** – Admin access control
-
-### 🔍 Computer Vision & AI
-- **YOLOv5 Nano (PyTorch)** – Lightweight real-time object detection
-- **OpenCV** – Image preprocessing and camera interfacing
-- **Jetson Nano** – Edge inference and sensor-camera integration
-
-### 📡 Communication
-- **Twilio SMS API** – Alert system for emergency communication
-- **Python** – Core scripts for sensor, camera, vision, and cloud communication
-
-### ⚙️ Tooling
-- **Node.js, npm** – Frontend build system
-- **Jetson.GPIO** – Sensor interfacing on Jetson
-- **Git & GitHub** – Version control
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Contributors](#contributors)
+- [License](#license)
 
 ---
 
-## 📂 Folder Structure
+## 📂 Project Structure
 
-```bash
-├── dashboard/               # React frontend
-├── firebase_config.py       # Firebase setup and credentials
-├── main.py                  # Jetson Nano script (sensors + CV)
-├── twilio_alerts.py         # SMS alert handler
-├── yolov5/                  # YOLOv5 model and weights
-├── sensors/                 # Ultrasonic sensor read scripts
-└── README.md
+The project is organized into the following main components:
+
+1. **🌐 Client**: Frontend applications for user interaction.
+   - **Flood Detection System Client**
+   - **Pothole Detection System Client**
+2. **📏 Distance**: Arduino-based ultrasonic sensor system for measuring water levels.
+3. **🖥️ Server**: Backend server for data handling and API endpoints.
+4. **🤖 Pothole Detection**: AI-based system for detecting potholes on roads.
+
+## 📘 Introduction
+
+The **Flood Monitoring and Pothole Detection System** is a smart solution designed to monitor urban flooding and detect potholes on roads. It integrates hardware, software, and AI-based technologies to provide real-time data, alerts, and insights for safer and smarter cities.
+
+---
+
+## ✨ Features
+
+### 🌊 Flood Detection Client
+
+- Real-time flood level monitoring
+- Sensor data visualization (charts, gauges)
+- Historical data tracking
+- Alerts when threshold is exceeded
+
+### 🕳️ Pothole Detection Client
+
+- Upload and detect potholes using AI
+- Live camera-based pothole detection
+- Severity visualization
+- Maintenance request integration
+
+### 🔧 Hardware
+
+- Ultrasonic sensor (e.g., HC-SR04) for flood level measurement
+- Wi-Fi-enabled microcontroller (e.g., NodeMCU/Wemos D1)
+- Sends live data to backend via HTTP POST
+
+---
+
+## 🧰 Technologies Used
+
+### Frontend
+
+- React.js
+- Tailwind CSS / Material UI
+- Chart.js
+- WebSocket / Axios
+
+### Backend
+
+- Node.js
+- Express.js
+- Firebase / MongoDB (for storing sensor data)
+
+### AI/ML (Pothole Detection)
+
+- Python
+- OpenCV
+- Scikit-learn
+- Trained `.pkl` model
+
+---
+
+## 🧱 Project Structure
